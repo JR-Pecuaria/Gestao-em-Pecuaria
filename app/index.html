@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gestão Pecuária JS Rural</title>
+<meta name="description" content="Rebanho, lançamentos, estoque por retiro e pasto, Mapão e pendências — JS Rural.">
+<meta name="theme-color" content="#223047">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pecuária">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="app" id="app" hidden>
+  <header class="app-header">
+    <div>
+      <div class="brand-mark">
+        <img src="icons/logo.png" alt="JS Rural">
+        <div>
+          <span class="brand-tag">Gestão pecuária</span>
+          <h1 id="fazendaNome">Fazenda</h1>
+        </div>
+      </div>
+      <nav class="tabs" role="tablist" id="tabNav">
+        <button class="tab-btn active" data-tab="inicio" type="button">Início</button>
+        <button class="tab-btn" data-tab="lancar" type="button">Lançar</button>
+        <button class="tab-btn" data-tab="estoque" type="button">Estoque</button>
+        <button class="tab-btn" data-tab="livro" type="button">Livro</button>
+        <button class="tab-btn" data-tab="conferencia" type="button">Mapão</button>
+        <button class="tab-btn" data-tab="reproducao" type="button">Reprodução</button>
+        <button class="tab-btn" data-tab="mes" type="button">Mês</button>
+        <button class="tab-btn" data-tab="pendencias" type="button">Pendências</button>
+        <button class="tab-btn" data-tab="cadastros" type="button">Cadastros</button>
+      </nav>
+    </div>
+    <div class="header-right">
+      <span class="sync-pill" id="syncPill" title="">● …</span>
+      <button class="icon-btn btn-sm" id="btnAtualizar" type="button" title="Buscar dados novos e enviar pendentes">↻ Atualizar</button>
+      <span class="user-box"><span id="userNome"></span><button class="icon-btn btn-sm" id="btnSair" type="button">Sair</button></span>
+    </div>
+  </header>
+
+  <main>
+    <section id="panel-inicio" class="tab-panel active"></section>
+    <section id="panel-lancar" class="tab-panel"></section>
+    <section id="panel-estoque" class="tab-panel"></section>
+    <section id="panel-livro" class="tab-panel"></section>
+    <section id="panel-conferencia" class="tab-panel"></section>
+    <section id="panel-reproducao" class="tab-panel"></section>
+    <section id="panel-mes" class="tab-panel"></section>
+    <section id="panel-pendencias" class="tab-panel"></section>
+    <section id="panel-cadastros" class="tab-panel"></section>
+  </main>
+
+  <footer class="app-footer">
+    <span id="syncStatus">…</span>
+    <span class="mono" id="appVersion"></span>
+  </footer>
+</div>
+
+<div class="login-screen" id="loginScreen" hidden>
+  <form class="login-card card" id="loginForm" autocomplete="on">
+    <img src="icons/logo.png" alt="JS Rural">
+    <h2>Gestão Pecuária</h2>
+    <p class="section-hint">Entre com o e-mail e a senha que o administrador cadastrou para você.</p>
+    <div class="field"><label for="loginEmail">E-mail</label><input class="input" type="email" id="loginEmail" autocomplete="username" required></div>
+    <div class="field"><label for="loginSenha">Senha</label><input class="input" type="password" id="loginSenha" autocomplete="current-password" required></div>
+    <div class="msg err" id="loginMsg" hidden></div>
+    <button class="icon-btn btn-primary btn-lg" id="loginBtn" type="submit">Entrar</button>
+    <a href="#" class="login-link" id="loginEsqueci">Esqueci a senha</a>
+  </form>
+</div>
+
+<div class="login-screen" id="configScreen" hidden>
+  <div class="login-card card">
+    <img src="icons/logo.png" alt="JS Rural">
+    <h2>Falta configurar</h2>
+    <p class="section-hint">Abra o arquivo <b>js/config.js</b> e cole o endereço e a chave <i>anon</i> do projeto Supabase <b>gestao-pecuaria</b>. Veja o LEIA-ME.</p>
+  </div>
+</div>
+
+<dialog class="sheet" id="sheet"></dialog>
+<div id="printArea" aria-hidden="true"></div>
+<div class="toast" id="toast" hidden></div>
+<div class="toast" id="updateToast" hidden>Nova versão disponível. <button class="icon-btn btn-sm" id="btnUpdate" type="button">Atualizar</button></div>
+
+<script src="vendor/supabase.js"></script>
+<script src="js/config.js"></script>
+<script src="js/store.js"></script>
+<script src="js/app.js"></script>
+<script src="js/app3.js"></script>
+<script src="js/pwa.js"></script>
+</body>
+</html>
